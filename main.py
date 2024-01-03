@@ -8,9 +8,8 @@ import os
 
 #Initializing 
 pygame.init()
-#pygame.mixer.init() 
 
-#Setting up FPS 
+#Frames Per Second
 FPS = 60
 FramePerSec = pygame.time.Clock()
  
@@ -33,121 +32,159 @@ game_over = font.render("Game Over", True, BLACK)
 game_won = font.render("Game Won", True, WHITE)
 
 #Pliki
-background = pygame.image.load("spr_dice_back.png")
+Background = pygame.image.load("spr_EsqueletosEspanoles_back.jpg")
 Icon = pygame.image.load("Icon.png")
-k6 = pygame.image.load('k6.png')
+K6 = pygame.image.load('k6.png')
+Hands = pygame.image.load('spr_hands.png')
 
 #Tytuł i Ikona
 pygame.display.set_caption('Antumbra','Icon.png')
 pygame.display.set_icon(Icon)
 
+#Rozdzielczość
 DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
  
+#Klasy Kości
 class Alpha(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
-        penumbra = random.randint(1,6)
-        if penumbra == 1:
-                    self.image = pygame.image.load("k6-1.png")
-        if penumbra == 2:
-                    self.image = pygame.image.load("k6-2.png")
-        if penumbra == 3:
-                    self.image = pygame.image.load("k6-3.png")
-        if penumbra == 4:
-                    self.image = pygame.image.load("k6-4.png")
-        if penumbra == 5:
-                    self.image = pygame.image.load("k6-5.png")
-        if penumbra == 6:
-                    self.image = pygame.image.load("k6-6.png")
+        self.image = pygame.image.load("k6.png")
         self.rect = self.image.get_rect()
         self.rect.topleft = (70, 600)
+
+    def reroll(self):
+        pressed_keys = pygame.key.get_pressed()
+        if pressed_keys[K_1]:
+            pygame.mixer.Sound("snd_dice_roll.mp3").play()
+            penumbra = random.randint(1,6)
+            if penumbra == 1:
+                self.image = pygame.image.load("k6-1.png")
+            if penumbra == 2:
+                self.image = pygame.image.load("k6-2.png")
+            if penumbra == 3:
+                self.image = pygame.image.load("k6-3.png")
+            if penumbra == 4:
+                self.image = pygame.image.load("k6-4.png")
+            if penumbra == 5:
+                self.image = pygame.image.load("k6-5.png")
+            if penumbra == 6:
+                self.image = pygame.image.load("k6-6.png")
+
 class Beta(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
-        penumbra = random.randint(1,6)
-        if penumbra == 1:
-                    self.image = pygame.image.load("k6-1.png")
-        if penumbra == 2:
-                    self.image = pygame.image.load("k6-2.png")
-        if penumbra == 3:
-                    self.image = pygame.image.load("k6-3.png")
-        if penumbra == 4:
-                    self.image = pygame.image.load("k6-4.png")
-        if penumbra == 5:
-                    self.image = pygame.image.load("k6-5.png")
-        if penumbra == 6:
-                    self.image = pygame.image.load("k6-6.png")
+        self.image = pygame.image.load("k6.png")
         self.rect = self.image.get_rect()
         self.rect.topleft = (166, 600)
+
+    def reroll(self):
+        pressed_keys = pygame.key.get_pressed()
+        if pressed_keys[K_2]:
+            pygame.mixer.Sound("snd_dice_roll.mp3").play()
+            penumbra = random.randint(1,6)
+            if penumbra == 1:
+                self.image = pygame.image.load("k6-1.png")
+            if penumbra == 2:
+                self.image = pygame.image.load("k6-2.png")
+            if penumbra == 3:
+                self.image = pygame.image.load("k6-3.png")
+            if penumbra == 4:
+                self.image = pygame.image.load("k6-4.png")
+            if penumbra == 5:
+                self.image = pygame.image.load("k6-5.png")
+            if penumbra == 6:
+                self.image = pygame.image.load("k6-6.png")
+
 class Delta(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
-        penumbra = random.randint(1,6)
-        if penumbra == 1:
-                    self.image = pygame.image.load("k6-1.png")
-        if penumbra == 2:
-                    self.image = pygame.image.load("k6-2.png")
-        if penumbra == 3:
-                    self.image = pygame.image.load("k6-3.png")
-        if penumbra == 4:
-                    self.image = pygame.image.load("k6-4.png")
-        if penumbra == 5:
-                    self.image = pygame.image.load("k6-5.png")
-        if penumbra == 6:
-                    self.image = pygame.image.load("k6-6.png")
+        self.image = pygame.image.load("k6.png")
         self.rect = self.image.get_rect()
         self.rect.topleft = (268, 600)
+
+    def reroll(self):
+        pressed_keys = pygame.key.get_pressed()
+        if pressed_keys[K_3]:
+            pygame.mixer.Sound("snd_dice_roll.mp3").play()
+            penumbra = random.randint(1,6)
+            if penumbra == 1:
+                self.image = pygame.image.load("k6-1.png")
+            if penumbra == 2:
+                self.image = pygame.image.load("k6-2.png")
+            if penumbra == 3:
+                self.image = pygame.image.load("k6-3.png")
+            if penumbra == 4:
+                self.image = pygame.image.load("k6-4.png")
+            if penumbra == 5:
+                self.image = pygame.image.load("k6-5.png")
+            if penumbra == 6:
+                self.image = pygame.image.load("k6-6.png")
+
 class Tau(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
-        penumbra = random.randint(1,6)
-        if penumbra == 1:
-                    self.image = pygame.image.load("k6-1.png")
-        if penumbra == 2:
-                    self.image = pygame.image.load("k6-2.png")
-        if penumbra == 3:
-                    self.image = pygame.image.load("k6-3.png")
-        if penumbra == 4:
-                    self.image = pygame.image.load("k6-4.png")
-        if penumbra == 5:
-                    self.image = pygame.image.load("k6-5.png")
-        if penumbra == 6:
-                    self.image = pygame.image.load("k6-6.png")
+        self.image = pygame.image.load("k6.png")
         self.rect = self.image.get_rect()
         self.rect.topleft = (370, 600)
+
+    def reroll(self):
+        pressed_keys = pygame.key.get_pressed()
+        if pressed_keys[K_4]:
+            pygame.mixer.Sound("snd_dice_roll.mp3").play()
+            penumbra = random.randint(1,6)
+            if penumbra == 1:
+                self.image = pygame.image.load("k6-1.png")
+            if penumbra == 2:
+                self.image = pygame.image.load("k6-2.png")
+            if penumbra == 3:
+                self.image = pygame.image.load("k6-3.png")
+            if penumbra == 4:
+                self.image = pygame.image.load("k6-4.png")
+            if penumbra == 5:
+                self.image = pygame.image.load("k6-5.png")
+            if penumbra == 6:
+                self.image = pygame.image.load("k6-6.png")
+
 class Omicron(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
-        penumbra = random.randint(1,6)
-        if penumbra == 1:
-                    self.image = pygame.image.load("k6-1.png")
-        if penumbra == 2:
-                    self.image = pygame.image.load("k6-2.png")
-        if penumbra == 3:
-                    self.image = pygame.image.load("k6-3.png")
-        if penumbra == 4:
-                    self.image = pygame.image.load("k6-4.png")
-        if penumbra == 5:
-                    self.image = pygame.image.load("k6-5.png")
-        if penumbra == 6:
-                    self.image = pygame.image.load("k6-6.png")
+        self.image = pygame.image.load("k6.png")
         self.rect = self.image.get_rect()
         self.rect.topleft = (466, 600)
 
-#Setting up Sprites        
+    def reroll(self):
+        pressed_keys = pygame.key.get_pressed()
+        if pressed_keys[K_5]:
+            pygame.mixer.Sound("snd_dice_roll.mp3").play()
+            penumbra = random.randint(1,6)
+            if penumbra == 1:
+                self.image = pygame.image.load("k6-1.png")
+            if penumbra == 2:
+                self.image = pygame.image.load("k6-2.png")
+            if penumbra == 3:
+                self.image = pygame.image.load("k6-3.png")
+            if penumbra == 4:
+                self.image = pygame.image.load("k6-4.png")
+            if penumbra == 5:
+                self.image = pygame.image.load("k6-5.png")
+            if penumbra == 6:
+                self.image = pygame.image.load("k6-6.png")
+
+
+#Klasyfikacja
 Al = Alpha()
 Be = Beta()
 De = Delta()
 Ta = Tau()
 Om = Omicron()
  
-#Creating Sprites Groups
+#Klasyfikacja Grup Teksturowych
 all_sprites = pygame.sprite.Group()
 all_sprites.add(Al,Be,De,Ta,Om)
 
 
 #Music
-pygame.mixer.music.load("snd_back_music.mp3")
+pygame.mixer.music.load("snd_ElMechanico_music.mp3")
 pygame.mixer.music.play(-1)
 
 #Game Loop
@@ -158,9 +195,11 @@ while True:
             pygame.quit()
             sys.exit()
 
-
     #Refresher and Renderer
-    DISPLAYSURF.blit(background, (0,0))
-    all_sprites.draw(DISPLAYSURF)
+    DISPLAYSURF.blit(Background, (0,0))
+    DISPLAYSURF.blit(Hands, (0,484))
+    for entity in all_sprites:
+        DISPLAYSURF.blit(entity.image, entity.rect)
+        entity.reroll()
     pygame.display.update()
     FramePerSec.tick(FPS)
