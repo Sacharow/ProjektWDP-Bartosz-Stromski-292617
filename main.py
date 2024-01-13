@@ -10,11 +10,11 @@ def Sound_Catcher(image_filename):
 #Initializing 
 pygame.init()
 
-#Frames Per Second
+#Klatki Na Sekundę
 FPS = 60
 FramePerSec = pygame.time.Clock()
  
-#LOS COLORES 
+#Bazowe Kolory
 PURPLE = (255,0,255)
 CYAN = (0,255,255)
 BLUE = (0, 0, 255)
@@ -22,32 +22,38 @@ RED = (255, 0, 0)
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 
-#LOS VARIABLES ADICIONALES
+#Zmienne Okienkowe
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 900
  
-#VER LAS LENGUAS DEL ORDENADOR
+#Czcionki
 font = pygame.font.SysFont("Verdana", 60)
 font_small = pygame.font.SysFont("Verdana", 30)
 game_over = font.render("Game Over", True, BLACK)
 game_won = font.render("Game Won", True, WHITE)
 
-#EL ARCHIVO
+#Źródło Plików
 assets_folder = os.path.join(os.getcwd(), "Assets")
 
-#El Archivos del archivo
+#Ładowanie Plików
+Background_menu = pygame.image.load(Photo_Catcher("BarraEspanola.png"))
 Background = pygame.image.load(Photo_Catcher("EsqueletosEspanoles.jpg"))
 Icon = pygame.image.load(Photo_Catcher("Icon.png"))
 Hands = pygame.image.load(Photo_Catcher("Hands.png"))
+#Słownik Muzyczny
+music_path={
+    "game": Sound_Catcher("snd_ElMechanico_music.mp3"),
+    "menu": Sound_Catcher("snd_SpanishPhonk_music.mp3"),
+}
 
-#EL TITULO Y MAS
+#Tytuł i Ikonka
 pygame.display.set_caption('Antumbra','Icon.png')
 pygame.display.set_icon(Icon)
 
-#Los Dimensiones
+#Rozmiar Okienka
 DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
  
-#Los Huesos :3
+#Obiekty
 class Alpha(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
@@ -163,6 +169,12 @@ class Omicron(pygame.sprite.Sprite):
         if penumbra == 6:
             self.image = pygame.image.load(Photo_Catcher("k6-6.png"))
 
+class Play(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__() 
+        self.image = pygame.image.load(Photo_Catcher("Button2-s2.png"))
+        self.rect = self.image.get_rect()
+        self.rect.topleft = ((SCREEN_WIDTH/2)-(self.rect.width/2), (SCREEN_HEIGHT/2)-(self.rect.height/2)+40)
 
 #Klasyfikacja
 Al = Alpha()
@@ -170,33 +182,63 @@ Be = Beta()
 De = Delta()
 Ta = Tau()
 Om = Omicron()
+Pl = Play()
  
 #Klasyfikacja Grup Teksturowych
 all_sprites = pygame.sprite.Group()
-all_sprites.add(Al,Be,De,Ta,Om)
+dice_sprites = pygame.sprite.Group()
+all_sprites.add(Al,Be,De,Ta,Om,Pl)
+dice_sprites.add(Al,Be,De,Ta,Om)
 
+#Muzyka zależna od Pokoju
+def Music_Changer(game_state):
+    pygame.mixer.music.stop()
+    pygame.mixer.music.load(music_path[game_state])
+    pygame.mixer.music.play(-1)
 
-#Music
-pygame.mixer.music.load(Sound_Catcher("snd_ElMechanico_music.mp3"))
-pygame.mixer.music.play(-1)
+#Room Startup
+game_state="menu"
+Music_Changer(game_state)
 
 #Game Loop
 while True:
-    #Cycles through all events occuring  
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
-        if event.type == KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                for entity in all_sprites:
-                    entity.roll()
+    #Pokój z Menu
+    if (game_state =="menu"):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = pygame.mouse.get_pos()
+                if Pl.rect.x <= mouse_x <= Pl.rect.x+Pl.rect.width and Pl.rect.y <= mouse_y <= Pl.rect.y+Pl.rect.height:
+                    game_state="game"
 
-    #Refresher and Renderer
-    DISPLAYSURF.blit(Background, (0,0))
-    DISPLAYSURF.blit(Hands, (0,484))
-    for entity in all_sprites:
-        DISPLAYSURF.blit(entity.image, entity.rect)   
+        #Refresher and Renderer
+        DISPLAYSURF.blit(Background_menu, (0,0))
+        DISPLAYSURF.blit(Pl.image,Pl.rect)
+        pygame.display.update()
+        FramePerSec.tick(FPS)
 
-    pygame.display.update()
-    FramePerSec.tick(FPS)
+    #Pokój z Grą
+    if (game_state =="game"):
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = pygame.mouse.get_pos()
+                if Pl.rect.x <= mouse_x <= Pl.rect.x+Pl.rect.width and Pl.rect.y <= mouse_y <= Pl.rect.y+Pl.rect.height:
+                    game_state="menu"
+            if event.type == KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    for entity in dice_sprites:
+                        entity.roll()
+
+        #Refresher and Renderer
+        DISPLAYSURF.blit(Background, (0,0))
+        DISPLAYSURF.blit(Hands, (0,484))
+        for entity in all_sprites:
+            DISPLAYSURF.blit(entity.image, entity.rect)   
+
+        pygame.display.update()
+        FramePerSec.tick(FPS)
