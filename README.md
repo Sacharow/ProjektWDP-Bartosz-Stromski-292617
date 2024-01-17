@@ -22,7 +22,7 @@ Gracze wykonują tury na przemian, wpisując punkty w różne kategorie na swoje
 Podsumowanie kombinacji:
 
 Jednostki, dwójki, trójki, czwórki, piątki, szóstki: Liczba punktów równa ilości uzyskanych oczek na kościach o odpowiednich wartościach.
-Trójka i para: Suma wszystkich oczek na kościach.
+Trójka i Czwórka: Suma wszystkich oczek na kościach.
 Full: 25 punktów za trójkę i parę.
 Mały strit: 30 punktów za sekwencję czterech kolejnych numerów.
 Duży strit: 40 punktów za sekwencję pięciu kolejnych numerów.
