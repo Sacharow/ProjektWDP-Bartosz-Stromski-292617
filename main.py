@@ -473,6 +473,7 @@ while True:
                 if Me.rect.x <= mouse_x <= Me.rect.x+Me.rect.width and Me.rect.y <= mouse_y <= Me.rect.y+Me.rect.height:
                     game_state="menu"
                     Music_Changer(game_state)
+                
                 for i in range(1,14):
                     Element=globals()[f'W{i}']
                     if Element.rect.x <= mouse_x <= Element.rect.x+Element.rect.width and Element.rect.y <= mouse_y <= Element.rect.y+Element.rect.height:
