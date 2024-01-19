@@ -30,24 +30,18 @@ SCREEN_HEIGHT = 900
 font = pygame.font.SysFont("Verdana", 60)
 font_small = pygame.font.SysFont("Verdana", 30)
 font_tiny = pygame.font.SysFont("Verdana", 10)
-game_over = font.render("Game Over", True, BLACK)
-game_won = font.render("Game Won", True, WHITE)
 
 
 #Źródło Plików
 assets_folder = os.path.join(os.getcwd(), "Assets")
 
 #Ładowanie Plików
-Background_menu = pygame.image.load(Photo_Catcher("BarraEspanola.png"))
+Background_menu = pygame.image.load(Photo_Catcher("back.png"))
 Background_info = pygame.image.load(Photo_Catcher("skeleton_back.png"))
 Background_score = pygame.image.load(Photo_Catcher("Score_back.png"))
 Background = pygame.image.load(Photo_Catcher("EsqueletosEspanoles.jpg"))
 Icon = pygame.image.load(Photo_Catcher("Icon.png"))
-PlayButton= pygame.image.load(Photo_Catcher("Play.png"))
-HowButton= pygame.image.load(Photo_Catcher("How.png"))
-MenuButton= pygame.image.load(Photo_Catcher("Menu.png"))
-ScoreButton= pygame.image.load(Photo_Catcher("Score.png"))
-Title= pygame.image.load(Photo_Catcher("LosHuesos.png"))
+Title= pygame.image.load(Photo_Catcher("title.png"))
 Informacion= pygame.image.load(Photo_Catcher("Informacion.png"))
 Puntos= pygame.image.load(Photo_Catcher("Puntos.png"))
 #Słownik Muzyczny
@@ -67,7 +61,7 @@ DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 wyniki=[0,0,0,0,0]
 counter_wyniki=[0,0,0,0,0,0]
 suma_wyniki=[0,0,0,0,0,0,0,0,0,0,0,0,0]
-final_wynik=[0,0,0,0,0,0,0,0,0,0,0,0,0]
+final_wyniki=[0,0,0,0,0,0,0,0,0,0,0,0,0]
 
 #Zmienne Kostne
 roll_amount=2
@@ -143,84 +137,72 @@ class O_1(pygame.sprite.Sprite):
         self.image = pygame.image.load(Photo_Catcher("Je2.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (10,130)
-
 class O_2(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load(Photo_Catcher("Dw2.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (10,220)
-
 class O_3(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load(Photo_Catcher("Tr2.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (10,310)
-
 class O_4(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load(Photo_Catcher("Cz2.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (10,400)
-
 class O_5(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load(Photo_Catcher("Pi2.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (10,490)
-
 class O_6(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load(Photo_Catcher("Sz2.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (10,580)
-
 class O_3X(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load(Photo_Catcher("3x2.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (510,130)
-
 class O_4X(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load(Photo_Catcher("4x2.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (510,220)
-
 class O_Full(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load(Photo_Catcher("Full2.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (510,310)
-
 class O_Maly(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load(Photo_Catcher("Ms2.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (510,400)
-
 class O_Duzy(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load(Photo_Catcher("Ds2.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (510,490)
-
 class O_Szansa(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load(Photo_Catcher("Szansa2.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (510,580)
-
 class O_Yahtzee(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
@@ -234,7 +216,7 @@ class Alpha(pygame.sprite.Sprite):
     
     def __init__(self):
         super().__init__() 
-        self.image = pygame.image.load(Photo_Catcher("k6.png"))
+        self.image = pygame.image.load(Photo_Catcher("0.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (70, 750)
 
@@ -242,138 +224,131 @@ class Alpha(pygame.sprite.Sprite):
         penumbra = random.randint(1,6)
         wyniki[0]=penumbra
         if penumbra == 1:
-            self.image = pygame.image.load(Photo_Catcher("k6-1.png"))
+            self.image = pygame.image.load(Photo_Catcher("1.png"))
         if penumbra == 2:
-            self.image = pygame.image.load(Photo_Catcher("k6-2.png"))
+            self.image = pygame.image.load(Photo_Catcher("2.png"))
         if penumbra == 3:
-            self.image = pygame.image.load(Photo_Catcher("k6-3.png"))
+            self.image = pygame.image.load(Photo_Catcher("3.png"))
         if penumbra == 4:
-            self.image = pygame.image.load(Photo_Catcher("k6-4.png"))
+            self.image = pygame.image.load(Photo_Catcher("4.png"))
         if penumbra == 5:
-            self.image = pygame.image.load(Photo_Catcher("k6-5.png"))
+            self.image = pygame.image.load(Photo_Catcher("5.png"))
         if penumbra == 6:
-            self.image = pygame.image.load(Photo_Catcher("k6-6.png"))
-
+            self.image = pygame.image.load(Photo_Catcher("6.png"))
 class Beta(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
-        self.image = pygame.image.load(Photo_Catcher("k6.png"))
+        self.image = pygame.image.load(Photo_Catcher("0.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (166, 750)
 
     def roll(self):
         penumbra = random.randint(1,6)
-        wyniki[1]=penumbra
+        wyniki[0]=penumbra
         if penumbra == 1:
-            self.image = pygame.image.load(Photo_Catcher("k6-1.png"))
+            self.image = pygame.image.load(Photo_Catcher("1.png"))
         if penumbra == 2:
-            self.image = pygame.image.load(Photo_Catcher("k6-2.png"))
+            self.image = pygame.image.load(Photo_Catcher("2.png"))
         if penumbra == 3:
-            self.image = pygame.image.load(Photo_Catcher("k6-3.png"))
+            self.image = pygame.image.load(Photo_Catcher("3.png"))
         if penumbra == 4:
-            self.image = pygame.image.load(Photo_Catcher("k6-4.png"))
+            self.image = pygame.image.load(Photo_Catcher("4.png"))
         if penumbra == 5:
-            self.image = pygame.image.load(Photo_Catcher("k6-5.png"))
+            self.image = pygame.image.load(Photo_Catcher("5.png"))
         if penumbra == 6:
-            self.image = pygame.image.load(Photo_Catcher("k6-6.png"))
-
+            self.image = pygame.image.load(Photo_Catcher("6.png"))
 class Delta(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
-        self.image = pygame.image.load(Photo_Catcher("k6.png"))
+        self.image = pygame.image.load(Photo_Catcher("0.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (268, 750)
 
     def roll(self):
         penumbra = random.randint(1,6)
-        wyniki[2]=penumbra
+        wyniki[0]=penumbra
         if penumbra == 1:
-            self.image = pygame.image.load(Photo_Catcher("k6-1.png"))
+            self.image = pygame.image.load(Photo_Catcher("1.png"))
         if penumbra == 2:
-            self.image = pygame.image.load(Photo_Catcher("k6-2.png"))
+            self.image = pygame.image.load(Photo_Catcher("2.png"))
         if penumbra == 3:
-            self.image = pygame.image.load(Photo_Catcher("k6-3.png"))
+            self.image = pygame.image.load(Photo_Catcher("3.png"))
         if penumbra == 4:
-            self.image = pygame.image.load(Photo_Catcher("k6-4.png"))
+            self.image = pygame.image.load(Photo_Catcher("4.png"))
         if penumbra == 5:
-            self.image = pygame.image.load(Photo_Catcher("k6-5.png"))
+            self.image = pygame.image.load(Photo_Catcher("5.png"))
         if penumbra == 6:
-            self.image = pygame.image.load(Photo_Catcher("k6-6.png"))
-
+            self.image = pygame.image.load(Photo_Catcher("6.png"))
 class Tau(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
-        self.image = pygame.image.load(Photo_Catcher("k6.png"))
+        self.image = pygame.image.load(Photo_Catcher("0.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (370, 750)
 
     def roll(self):
         penumbra = random.randint(1,6)
-        wyniki[3]=penumbra
+        wyniki[0]=penumbra
         if penumbra == 1:
-            self.image = pygame.image.load(Photo_Catcher("k6-1.png"))
+            self.image = pygame.image.load(Photo_Catcher("1.png"))
         if penumbra == 2:
-            self.image = pygame.image.load(Photo_Catcher("k6-2.png"))
+            self.image = pygame.image.load(Photo_Catcher("2.png"))
         if penumbra == 3:
-            self.image = pygame.image.load(Photo_Catcher("k6-3.png"))
+            self.image = pygame.image.load(Photo_Catcher("3.png"))
         if penumbra == 4:
-            self.image = pygame.image.load(Photo_Catcher("k6-4.png"))
+            self.image = pygame.image.load(Photo_Catcher("4.png"))
         if penumbra == 5:
-            self.image = pygame.image.load(Photo_Catcher("k6-5.png"))
+            self.image = pygame.image.load(Photo_Catcher("5.png"))
         if penumbra == 6:
-            self.image = pygame.image.load(Photo_Catcher("k6-6.png"))
-
+            self.image = pygame.image.load(Photo_Catcher("6.png"))
 class Omicron(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
-        self.image = pygame.image.load(Photo_Catcher("k6.png"))
+        self.image = pygame.image.load(Photo_Catcher("0.png"))
         self.rect = self.image.get_rect()
         self.rect.topleft = (466, 750)
 
     def roll(self):
         penumbra = random.randint(1,6)
-        wyniki[4]=penumbra
+        wyniki[0]=penumbra
         if penumbra == 1:
-            self.image = pygame.image.load(Photo_Catcher("k6-1.png"))
+            self.image = pygame.image.load(Photo_Catcher("1.png"))
         if penumbra == 2:
-            self.image = pygame.image.load(Photo_Catcher("k6-2.png"))
+            self.image = pygame.image.load(Photo_Catcher("2.png"))
         if penumbra == 3:
-            self.image = pygame.image.load(Photo_Catcher("k6-3.png"))
+            self.image = pygame.image.load(Photo_Catcher("3.png"))
         if penumbra == 4:
-            self.image = pygame.image.load(Photo_Catcher("k6-4.png"))
+            self.image = pygame.image.load(Photo_Catcher("4.png"))
         if penumbra == 5:
-            self.image = pygame.image.load(Photo_Catcher("k6-5.png"))
+            self.image = pygame.image.load(Photo_Catcher("5.png"))
         if penumbra == 6:
-            self.image = pygame.image.load(Photo_Catcher("k6-6.png"))
+            self.image = pygame.image.load(Photo_Catcher("6.png"))
 
 #Obiekty Guzikowe
 class Play(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
-        self.image = PlayButton
+        self.image = pygame.image.load(Photo_Catcher("Play2.png"))
         self.rect = self.image.get_rect()
-        self.rect.topleft = ((SCREEN_WIDTH/2)-(self.rect.width/2), (SCREEN_HEIGHT/2)-(self.rect.height/2))
-
+        self.rect.topleft = ((SCREEN_WIDTH/2)-(self.rect.width/2), 350)
 class How(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
-        self.image = HowButton
+        self.image = pygame.image.load(Photo_Catcher("Rules2.png"))
         self.rect = self.image.get_rect()
-        self.rect.topleft = ((SCREEN_WIDTH/2)-(self.rect.width/2), (SCREEN_HEIGHT/2)-(self.rect.height/2)+160)
-
+        self.rect.topleft = ((SCREEN_WIDTH/2)-(self.rect.width/2), 500)
 class Menu(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
-        self.image = MenuButton
+        self.image = pygame.image.load(Photo_Catcher("Menu2.png"))
         self.rect = self.image.get_rect()
-        self.rect.topleft = ((SCREEN_WIDTH/2)-(self.rect.width/2), (SCREEN_HEIGHT/2)-(self.rect.height/2)-160)
-
+        self.rect.topleft = ((SCREEN_WIDTH/2)-(self.rect.width/2), (SCREEN_HEIGHT/2)-(self.rect.height/2)-360)
 class Score(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
-        self.image = ScoreButton
+        self.image = pygame.image.load(Photo_Catcher("Score2.png"))
         self.rect = self.image.get_rect()
-        self.rect.topleft = ((SCREEN_WIDTH/2)-(self.rect.width/2), (SCREEN_HEIGHT/2)-(self.rect.height/2)+320)
+        self.rect.topleft = ((SCREEN_WIDTH/2)-(self.rect.width/2), 650)
 
 #Klasyfikacja
 Al = Alpha()
@@ -386,19 +361,19 @@ Ho = How()
 Me = Menu()
 So = Score()
 
-E_1=O_1()
-E_2=O_2()
-E_3=O_3()
-E_4=O_4()
-E_5=O_5()
-E_6=O_6()
-E_3x=O_3X()
-E_4x=O_4X()
-E_Full=O_Full()
-E_Maly=O_Maly()
-E_Duzy=O_Duzy()
-E_Szansa=O_Szansa()
-E_Yahtzee=O_Yahtzee()
+W1=O_1()
+W2=O_2()
+W3=O_3()
+W4=O_4()
+W5=O_5()
+W6=O_6()
+W7=O_3X()
+W8=O_4X()
+W9=O_Full()
+W10=O_Maly()
+W11=O_Duzy()
+W12=O_Szansa()
+W13=O_Yahtzee()
 
 #Klasyfikacja Grup Teksturowych i Funkcyjnych
 all_sprites = pygame.sprite.Group()
@@ -410,7 +385,7 @@ wyniki_functions=[]
 all_sprites.add(Al,Be,De,Ta,Om)
 button_sprites.add(Pl,Ho,Me,So)
 dice_sprites.add(Al,Be,De,Ta,Om)
-wyniki_sprites.add(E_1,E_2,E_3,E_3x,E_4,E_4x,E_5,E_6,E_Duzy,E_Full,E_Maly,E_Szansa,E_Yahtzee)
+wyniki_sprites.add(W1,W2,W3,W4,W5,W6,W7,W8,W9,W10,W11,W12,W13)
 wyniki_functions=[Zliczacz,Jedynki,Dwojki,Trojki,Czworki,Piatki,Szostki,ThreeOf,FourOf,Full,MStraight,DStraight,Yahtzee,Szansa]
 
 #Muzyka zależna od Pokoju
@@ -443,7 +418,8 @@ while True:
 
         #Refresher and Renderer
         DISPLAYSURF.blit(Background_menu, (0,0))
-        DISPLAYSURF.blit(Title, (0,30))
+        DISPLAYSURF.blit(pygame.image.load(Photo_Catcher("kosc.png")), (175,75))
+        DISPLAYSURF.blit(Title, (25,30))
         DISPLAYSURF.blit(Pl.image, Pl.rect) 
         DISPLAYSURF.blit(Ho.image, Ho.rect)  
         DISPLAYSURF.blit(So.image, So.rect)
@@ -497,6 +473,10 @@ while True:
                 if Me.rect.x <= mouse_x <= Me.rect.x+Me.rect.width and Me.rect.y <= mouse_y <= Me.rect.y+Me.rect.height:
                     game_state="menu"
                     Music_Changer(game_state)
+                for i in range(1,14):
+                    Element=globals()[f'W{i}']
+                    if Element.rect.x <= mouse_x <= Element.rect.x+Element.rect.width and Element.rect.y <= mouse_y <= Element.rect.y+Element.rect.height:
+                        final_wyniki[i-1]=suma_wyniki[i-1]
 
             if event.type == KEYDOWN:
                 if event.key == pygame.K_SPACE:
@@ -515,14 +495,16 @@ while True:
 
         DISPLAYSURF.blit(Background, (0,0))
         wyniki.sort()
-        roll_display = font_small.render("Roll Amount: "+str(roll_amount), True, WHITE)
-        wyniki_display = font_small.render("Wyniki "+str(wyniki[0])+str(wyniki[1])+str(wyniki[2])+str(wyniki[3])+str(wyniki[4]), True, WHITE)
-        counter_display = font_small.render("Counter "+" 1:"+str(counter_wyniki[0])+" 2:"+str(counter_wyniki[1])+" 3:"+str(counter_wyniki[2])+" 4:"+str(counter_wyniki[3])+" 5:"+str(counter_wyniki[4])+" 6:"+str(counter_wyniki[5]), True, WHITE)
-        suma_display = font_tiny.render("Suma "+" 1:"+str(suma_wyniki[0])+" 2:"+str(suma_wyniki[1])+" 3:"+str(suma_wyniki[2])+" 4:"+str(suma_wyniki[3])+" 5:"+str(suma_wyniki[4])+" 6:"+str(suma_wyniki[5])+" ThreeOf:"+str(suma_wyniki[6])+" FourOf:"+str(suma_wyniki[7])+" Full:"+str(suma_wyniki[8])+" MStraight:"+str(suma_wyniki[9])+" DStraight:"+str(suma_wyniki[10])+" Yahtzee"+str(suma_wyniki[11])+" Szansa:"+str(suma_wyniki[12]), True, WHITE)
-        DISPLAYSURF.blit(roll_display, (70,20))
-        DISPLAYSURF.blit(wyniki_display,(70,50))
-        DISPLAYSURF.blit(counter_display,(70,80))
-        DISPLAYSURF.blit(suma_display,(30,115))
+        #roll_display = font_small.render("Roll Amount: "+str(roll_amount), True, WHITE)
+        #wyniki_display = font_small.render("Wyniki "+str(wyniki[0])+str(wyniki[1])+str(wyniki[2])+str(wyniki[3])+str(wyniki[4]), True, WHITE)
+        #counter_display = font_small.render("Counter "+" 1:"+str(counter_wyniki[0])+" 2:"+str(counter_wyniki[1])+" 3:"+str(counter_wyniki[2])+" 4:"+str(counter_wyniki[3])+" 5:"+str(counter_wyniki[4])+" 6:"+str(counter_wyniki[5]), True, WHITE)
+        #suma_display = font_tiny.render("Suma "+" 1:"+str(suma_wyniki[0])+" 2:"+str(suma_wyniki[1])+" 3:"+str(suma_wyniki[2])+" 4:"+str(suma_wyniki[3])+" 5:"+str(suma_wyniki[4])+" 6:"+str(suma_wyniki[5])+" ThreeOf:"+str(suma_wyniki[6])+" FourOf:"+str(suma_wyniki[7])+" Full:"+str(suma_wyniki[8])+" MStraight:"+str(suma_wyniki[9])+" DStraight:"+str(suma_wyniki[10])+" Yahtzee"+str(suma_wyniki[11])+" Szansa:"+str(suma_wyniki[12]), True, WHITE)
+        final_display = font_tiny.render("FINAL "+" 1:"+str(final_wyniki[0])+" 2:"+str(final_wyniki[1])+" 3:"+str(final_wyniki[2])+" 4:"+str(final_wyniki[3])+" 5:"+str(final_wyniki[4])+" 6:"+str(final_wyniki[5])+" ThreeOf:"+str(final_wyniki[6])+" FourOf:"+str(final_wyniki[7])+" Full:"+str(final_wyniki[8])+" MStraight:"+str(final_wyniki[9])+" DStraight:"+str(final_wyniki[10])+" Yahtzee"+str(final_wyniki[11])+" Szansa:"+str(final_wyniki[12]), True, WHITE)
+        #DISPLAYSURF.blit(roll_display, (70,20))
+        #DISPLAYSURF.blit(wyniki_display,(70,50))
+        #DISPLAYSURF.blit(counter_display,(70,80))
+        #DISPLAYSURF.blit(suma_display,(30,115))
+        DISPLAYSURF.blit(final_display,(30,720))
         DISPLAYSURF.blit(Me.image, Me.rect) 
         for entity in dice_sprites:
             DISPLAYSURF.blit(entity.image, entity.rect)
